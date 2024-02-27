@@ -37,18 +37,17 @@ const server = http.createServer((req, res) => {  // the function that we write 
     const { pathname } = parsedUrl;
 
     // Check if the request is for the specified endpoint
-    if (pathname.startsWith('/incidents/')) {   // then we check it. Is this the expected URI for incidents?? This string will be part of request header that the client sends
-        // Extract parameters from the URL
-        const [, , road, location, direction, id] = pathname.split('/');  // then we check if it has the corresponding properties!
+    if (pathname.startsWith('/incidents/')) {   
+        const [, , road, location, direction, id] = pathname.split('/');  
 
         // Check if all parameters are provided
-        if (road && location && direction && id) {  // if it does, then send response. 
+        if (road && location && direction && id) {  
             // Send response with the extracted parameters
             res.writeHead(200, { 'Content-Type': 'application/json' }); // set some meta information for the response header, 200 means VALID!
             res.end(JSON.stringify(incidents.filter((incident) => {
                 return incident.id === `MABOS00${id}`
-            }))); // need to add the else part here! If not all parameters are provided, then we need a response header with status code!!
-        } else { // in order to avoid a pending request indefinitely, we need to tell it what code to send if invalid
+            }))); 
+        } else { 
             res.writeHead(400, { 'Content-Type': 'text/plain' });
             res.end('Endpoint not found.'); // re-start the server to see if this works and changes what happens with incomplete parameters!
         }
