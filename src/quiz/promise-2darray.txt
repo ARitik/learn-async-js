@@ -1,1 +1,9 @@
 Explain the code execution based on the order of the messages logged in src/quiz/promise-2darray.txt.
+
+The main loop executes 
+
+Once the result is handled, the asynchronous thread runs (after setTimeout())
+     first error caught: ("BAD INPUT")
+     then response resolved ("resolving ...")
+
+Finally the result is returned ("45")

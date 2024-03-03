@@ -1,8 +1,8 @@
 function sum2DArray(arr) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { 
         console.log('Sum called ... ');
         if(Array.isArray(arr)) {
-            setTimeout(() => {
+            setTimeout(() => { 
                 let sum = 0;
                 for (let i = 0; i < arr.length; i++) {
                     for (let j = 0; j < arr[i].length; j++) {
@@ -21,7 +21,6 @@ function sum2DArray(arr) {
     });
 }
 
-// Example usage:
 const array2D = [
     [1, 2, 3],
     [4, 5, 6],
@@ -29,7 +28,11 @@ const array2D = [
 ];
 
 const sumPromise1 = sum2DArray(array2D);
-console.log(sumPromise1);
+sumPromise1
+    .then((res) => console.log(res))
+    .catch((err) => console.error(err));
 
 const sumPromise2 = sum2DArray('array2D');
-console.log(sumPromise2);
+sumPromise2
+    .then((res) => console.log(res))
+    .catch((err) => console.error(err));
